@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NguyenVanHoang_231220789_De02</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/NguyenVanHoang_231220789_De02.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
+                    🌐 NguyenVanHoang_231220789_De02
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="NvhHome" asp-action="NvhIndex">🏠 Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="NvhHome" asp-action="NvhAbout">👤 Bản thân</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="NvhHome" asp-action="NvhPrivacy">📜 Chính sách</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="NvhCatalogs" asp-action="NvhIndex">📦 NvhCatalog</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <div class="container my-4">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-light border-top py-3 mt-auto">
+        <div class="container text-center text-muted">
+            &copy; 2025 - <strong>NguyenVanHoang_231220789_De02</strong> |
+            <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

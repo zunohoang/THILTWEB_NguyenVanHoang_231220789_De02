@@ -1,0 +1,80 @@
+﻿@model IEnumerable<NguyenVanHoang_231220789_De02.Models.NvhCatalog>
+
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+}
+
+<h1 class="text-center text-primary mb-4">📦 Danh sách sản phẩm</h1>
+
+<p class="text-end mb-3">
+    <a class="btn btn-success shadow" asp-action="NvhCreate">
+        <i class="bi bi-plus-circle"></i> Thêm mới
+    </a>
+</p>
+
+<table class="table table-striped table-hover table-bordered align-middle shadow">
+    <thead class="table-dark text-center">
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Giá (VNĐ)</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+            <th>Hình ảnh</th>
+            <th>Trạng thái</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td class="fw-bold text-primary">@item.nvhCateName</td>
+                <td class="text-danger fw-bold">@item.nvhCatePrice.ToString("N0")</td>
+                <td>@item.nvhCateQty</td>
+
+                <!-- Thành tiền -->
+                <td class="text-success fw-bold">
+                    @(item.nvhCatePrice * item.nvhCateQty)
+                </td>
+
+                <!-- Hình ảnh -->
+                <td>
+                    @if (!string.IsNullOrEmpty(item.nvhPicture))
+                    {
+                        <img src="~/images/@item.nvhPicture" alt="@item.nvhCateName"
+                             class="img-thumbnail shadow-sm" style="max-width:80px; max-height:80px;" />
+                    }
+                    else
+                    {
+                        <span class="text-muted fst-italic">No image</span>
+                    }
+                </td>
+
+                <!-- Active / Non-Active -->
+                <td>
+                    @if (item.nvhCateActive)
+                    {
+                        <span class="badge bg-success">Active</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Non-Active</span>
+                    }
+                </td>
+
+                <!-- Các nút CRUD -->
+                <td>
+                    <a class="btn btn-sm btn-primary me-1" asp-action="NvhEdit" asp-route-id="@item.nvhId">
+                        <i class="bi bi-pencil-square"></i> Sửa
+                    </a>
+                    <a class="btn btn-sm btn-info text-white me-1" asp-action="NvhDetails" asp-route-id="@item.nvhId">
+                        <i class="bi bi-eye"></i> Xem
+                    </a>
+                    <a class="btn btn-sm btn-danger" asp-action="NvhDelete" asp-route-id="@item.nvhId">
+                        <i class="bi bi-trash"></i> Xóa
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,55 @@
+﻿@model NguyenVanHoang_231220789_De02.Models.NvhCatalog
+
+@{
+    ViewData["Title"] = "Xóa sản phẩm";
+}
+
+<h2 class="text-danger text-center mb-4">🗑 Xóa sản phẩm</h2>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-lg border-0 rounded-3">
+            <div class="card-body p-4">
+                <div class="alert alert-warning">
+                    <h5 class="fw-bold mb-2">⚠ Bạn có chắc chắn muốn xóa sản phẩm này không?</h5>
+                    <p class="mb-0 text-muted">Thao tác này không thể hoàn tác.</p>
+                </div>
+
+                <dl class="row">
+                    <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(m => m.nvhCateName)</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(m => m.nvhCateName)</dd>
+
+                    <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(m => m.nvhCatePrice)</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(m => m.nvhCatePrice) VNĐ</dd>
+
+                    <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(m => m.nvhCateQty)</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(m => m.nvhCateQty)</dd>
+
+                    <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(m => m.nvhPicture)</dt>
+                    <dd class="col-sm-9">
+                        @if (!string.IsNullOrEmpty(Model.nvhPicture))
+                        {
+                            <img src="~/images/@Model.nvhPicture" alt="Ảnh sản phẩm" class="img-thumbnail" style="max-height:150px;" />
+                        }
+                        else
+                        {
+                            <span class="text-muted">Chưa có ảnh</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-3 fw-bold">@Html.DisplayNameFor(m => m.nvhCateActive)</dt>
+                    <dd class="col-sm-9">
+                        @(Model.nvhCateActive ? "✅ Đang hoạt động" : "❌ Ngừng hoạt động")
+                    </dd>
+                </dl>
+
+                <form asp-action="Delete" method="post">
+                    @Html.AntiForgeryToken()  <!-- phải có để khớp [ValidateAntiForgeryToken] -->
+                    <input type="hidden" asp-for="nvhId" />
+                    <a asp-action="NvhIndex" class="btn btn-outline-secondary">⬅ Quay lại</a>
+                    <button type="submit" class="btn btn-danger shadow">🗑 Xóa ngay</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
